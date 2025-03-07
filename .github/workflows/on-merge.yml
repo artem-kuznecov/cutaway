@@ -19,6 +19,7 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             cd ~/cutaway
+            ssh-add ~/.ssh/GitHubPersonal
             git checkout master
             git pull
             if [[ $(git log -1 --format=%s) =~ "Merge pull request" ]]; then
