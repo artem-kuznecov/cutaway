@@ -16,7 +16,7 @@ jobs:
         with:
           host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_NAME }}
-          key: ${{ secrets.DEPLOY_KEY }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             if [[ $(git log -1 --format=%s) =~ "Merge pull request" ]]; then
               echo "This is a merge commit"
