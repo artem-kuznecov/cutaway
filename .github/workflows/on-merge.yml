@@ -20,7 +20,6 @@ jobs:
           script: |
             if [[ $(git log -1 --format=%s) =~ "Merge pull request" ]]; then
               echo "This is a merge commit"
-              docker stop myapp && docker rm myapp && docker build -t myapp . && docker run -d --name myapp myapp
               docker stop cutaway-container || true && docker rm cutaway-container || true && docker build -t cutaway-image -f Dockerfile.prod . && docker run -d --name cutaway-container -p 5173:5173 cutaway-image
             else
               echo "Not a merge commit, skipping deployment"
