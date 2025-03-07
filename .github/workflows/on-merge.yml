@@ -25,11 +25,11 @@ jobs:
             docker rm cutaway-container || true
             
             # Клонирование репозитория или обновление кода
-            cd cutaway
-            git pull origin master
+            cd ~/cutaway
+            git pull
             
             # Сборка Docker образа
-            docker build -t cutaway-image .
+            docker build -t cutaway-image -f Dockerfile.prod .
             
             # Запуск Docker контейнера
-            docker run -d --name cutaway-container -p 80:80 cutaway-image
+            docker run -d --name cutaway-container -p 5173:5173 cutaway-image
