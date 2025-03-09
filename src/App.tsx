@@ -1,8 +1,8 @@
 export const App = () => {
   return (
-    <div>
+    <main>
       some content
-    </div>
+    </main>
   )
 }
 

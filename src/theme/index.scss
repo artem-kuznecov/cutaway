@@ -1,3 +1,30 @@
+@use "./typography" as *;
+
+:root {
+  --bg-lightest: #fff;
+  --bg-light: #f4f6f8;
+  --bg-grey: #eceff1;
+
+  --text-dark: #323235;
+  --text-grey: #9c9c9c;
+
+  --color-light-green: #adf1e0;
+  --color-green: #277e69;
+  --color-purple: #8075ff;
+  --color-red: #ff7171;
+  --color-yellow: #fff29b;
+
+  --gradient-dark: linear-gradient(141deg, #969699, #1e1e22);
+  --gradient-color: linear-gradient(
+    141deg,
+    var(--color-light-green),
+    var(--color-purple) 28%,
+    var(--color-red) 98%
+  );
+
+  --block-shadow-drop: 4px 8px 12px #e1e1e1;
+}
+
 * {
   padding: 0;
   margin: 0;
@@ -6,4 +33,11 @@
 
 html {
   min-height: 100dvh;
+  font-size: 14px;
+}
+
+@media screen and (max-width: 736px) {
+  html {
+    font-size: 12px;
+  }
 }
