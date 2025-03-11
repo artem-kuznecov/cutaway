@@ -104,6 +104,12 @@ $pseudo-padding-inline: 8px;
   }
 }
 
+@media (pointer: coarse) {
+  .animoji {
+    pointer-events: none;
+  }
+}
+
 @media (pointer: fine) {
   .animoji:hover {
     scale: 1.2;
