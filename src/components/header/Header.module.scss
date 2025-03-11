@@ -1,0 +1,99 @@
+$caret-width: calc(48% - 8px);
+$pseudo-padding-block: 6px;
+$pseudo-padding-inline: 8px;
+
+.header {
+  height: 4.25rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.animoji,
+.lang-toggle {
+  background: var(--bg-lightest);
+  box-shadow: var(--block-shadow-drop);
+  border-radius: 50%;
+  height: 100%;
+  aspect-ratio: 1 / 1;
+}
+
+.lang-toggle {
+  cursor: pointer;
+  overflow: hidden;
+  [data-role="language-spin"] {
+    height: 200%;
+    &[data-lang="en"] {
+      rotate: 180deg;
+    }
+    transition: all 0.2s;
+    h4 {
+      height: 50%;
+      text-transform: uppercase;
+      text-align: center;
+      align-content: center;
+      pointer-events: none;
+      user-select: none;
+
+      &:last-of-type {
+        rotate: 180deg;
+      }
+    }
+  }
+}
+
+.topic-toggle {
+  height: 100%;
+  width: max(20%, 190px);
+  background: var(--bg-grey);
+  border-radius: 64px;
+  box-shadow: var(--block-shadow-drop);
+  position: relative;
+  z-index: 0;
+
+  display: flex;
+  justify-content: space-between;
+
+  h4 {
+    width: $caret-width;
+    height: 100%;
+    text-align: center;
+    align-content: center;
+    margin-inline: $pseudo-padding-inline 0;
+    user-select: none;
+    cursor: pointer;
+    &:last-of-type {
+      margin-inline: 0 $pseudo-padding-inline;
+    }
+  }
+
+  [data-role="caret"] {
+    z-index: -1;
+    position: absolute;
+    top: $pseudo-padding-block;
+    background: var(--bg-lightest);
+    height: calc(100% - 12px);
+    width: $caret-width;
+    border-radius: 44px;
+    &[data-position="left"] {
+      left: $pseudo-padding-inline;
+    }
+    &[data-position="right"] {
+      left: calc(100% - $caret-width - $pseudo-padding-inline);
+    }
+    transition: all 0.2s;
+  }
+}
+
+@media (pointer: fine) {
+  h4:active ~ [data-role="caret"] {
+    top: calc(4% + 6px);
+    height: calc(92% - 12px);
+    width: calc($caret-width + 4px);
+    &[data-position="left"] {
+      left: calc($pseudo-padding-inline + 4px);
+    }
+    &[data-position="right"] {
+      left: calc(100% - $caret-width - $pseudo-padding-inline - 8px);
+    }
+  }
+}

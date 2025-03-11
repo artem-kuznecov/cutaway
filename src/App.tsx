@@ -1,9 +1,9 @@
-export const App = () => {
+import { Header } from '@/components/header/Header'
+
+export const App = (): React.JSX.Element => {
   return (
-    <main>
-      some content
-    </main>
+    <>
+      <Header />
+    </>
   )
 }
-
-export default App
