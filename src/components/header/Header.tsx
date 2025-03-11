@@ -6,6 +6,10 @@ import styles from './Header.module.scss'
 type TypeCaretPosition = 'left' | 'right'
 type TypeCurrentLanguage = 'ru' | 'en'
 
+function isTouchDevice () {
+  return (('ontouchstart' in window) || (navigator.maxTouchPoints > 0))
+}
+
 export const Header = (): React.JSX.Element => {
   const animojiRef = useRef<HTMLVideoElement>(null)
 
@@ -28,6 +32,7 @@ export const Header = (): React.JSX.Element => {
   }
 
   function mouseMoveInHeader (e: MouseEvent<HTMLDivElement>) {
+    if (isTouchDevice()) return
     e.stopPropagation()
     const targetNode = e.target as HTMLDivElement
     const position = {
@@ -73,6 +78,7 @@ export const Header = (): React.JSX.Element => {
           ref={animojiRef}
           src={animojiVideo}
           muted={true}
+          autoPlay={true}
         />
       </div>
       <div
