@@ -29,6 +29,8 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  font-family: "geologica regular", sans-serif;
+  color: var(--text-dark);
 }
 
 html {
@@ -39,5 +41,25 @@ html {
 @media screen and (max-width: 736px) {
   html {
     font-size: 12px;
+    body #root {
+      padding: 24px 24px;
+    }
+  }
+}
+
+body,
+#root {
+  min-height: 100dvh;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  background: var(--bg-light);
+  #root {
+    flex-grow: 1;
+    border: 1px solid red;
+    padding: 40px 88px 0;
+    max-width: 1280px;
   }
 }

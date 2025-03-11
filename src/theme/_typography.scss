@@ -25,9 +25,8 @@
 .text-header-2,
 .text-header-3,
 .text-header-4 {
-  font-family: "geologica bold", sans-serif;
   display: inline-block;
-  color: var(--text-dark);
+  color: var(--text-grey);
   width: fit-content;
 }
 
@@ -44,7 +43,12 @@
   font-size: 14px;
 }
 
+.text-bold {
+  font-family: "geologica bold", sans-serif;
+}
+
 .text-gradient {
+  @extend .text-bold;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   background-image: var(--gradient-dark);
@@ -57,7 +61,6 @@
 p,
 a {
   text-align: start;
-  font-family: "geologica regular", sans-serif;
   color: var(--text-dark);
 }
 
