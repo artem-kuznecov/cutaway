@@ -17,15 +17,31 @@ $pseudo-padding-inline: 8px;
   aspect-ratio: 1 / 1;
 }
 
+.animoji {
+  overflow: hidden;
+  position: relative;
+  transition: scale var(--animation-duration);
+  video {
+    height: 90%;
+    position: absolute;
+    top: 14%;
+    left: -10%;
+  }
+}
+
 .lang-toggle {
   cursor: pointer;
   overflow: hidden;
+  transition: scale var(--animation-duration);
+  &:active {
+    scale: 1.1;
+  }
   [data-role="language-spin"] {
     height: 200%;
     &[data-lang="en"] {
       rotate: 180deg;
     }
-    transition: all 0.2s;
+    transition: all var(--animation-duration);
     h4 {
       height: 50%;
       text-transform: uppercase;
@@ -80,11 +96,14 @@ $pseudo-padding-inline: 8px;
     &[data-position="right"] {
       left: calc(100% - $caret-width - $pseudo-padding-inline);
     }
-    transition: all 0.2s;
+    transition: all var(--animation-duration);
   }
 }
 
 @media (pointer: fine) {
+  .animoji:hover {
+    scale: 1.2;
+  }
   h4:active ~ [data-role="caret"] {
     top: calc(4% + 6px);
     height: calc(92% - 12px);

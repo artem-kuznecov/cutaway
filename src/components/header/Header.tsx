@@ -1,11 +1,14 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import cn from 'classnames'
+import animojiVideo from '@/assets/animoji.mp4'
 import styles from './Header.module.scss'
 
 type TypeCaretPosition = 'left' | 'right'
 type TypeCurrentLanguage = 'ru' | 'en'
 
 export const Header = () => {
+  const animojiRef = useRef<HTMLVideoElement>(null)
+
   const [caretPosition, setCaretPosition] = useState<TypeCaretPosition>('left')
   const [currentLanguage, setCurrentLanguage] = useState<TypeCurrentLanguage>('ru')
 
@@ -14,9 +17,20 @@ export const Header = () => {
     else setCurrentLanguage('ru')
   }
 
+  function animojiMouseEnter () {
+    const animoji = animojiRef.current as HTMLVideoElement
+    animoji.play()
+  }
+
   return (
     <header className={styles.header}>
-      <div className={styles.animoji}></div>
+      <div className={styles.animoji}>
+        <video
+          ref={animojiRef}
+          src={animojiVideo}
+          onMouseEnter={animojiMouseEnter}
+        ></video>
+      </div>
       <div className={styles['topic-toggle']}>
         <h4
           className={cn(['text-header-4', {
