@@ -27,7 +27,7 @@ export default tseslint.config(
       'semi': ['error', 'never'],
       'comma-dangle': ['error', 'never'],
       'object-curly-spacing': ['error', 'always'],
-      'space-in-parens': ['error', 'always'],
+      'space-in-parens': ['error', 'never'],
       'space-before-function-paren': ['error', 'always'],
       'no-multiple-empty-lines': [
         'error',
