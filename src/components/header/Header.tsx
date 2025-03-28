@@ -44,36 +44,29 @@ export const Header = (): React.JSX.Element => {
     let xPerc = 0
     let yPerc = 0
 
-    // Если блок находится примерно в середине
     if (position.x - window.innerWidth / 2 < 250) {
       xPerc = (position.x - window.innerWidth / 2) / 40
-      yPerc = position.y / 40
-    }
-    // Если блок находится правее середины
-    else if (position.x > window.innerWidth / 2 - 250) {
-      xPerc = (position.x - position.blockCenterX) / 30
       yPerc = position.y / 30
     }
-    // Если блок находится левее середины
-    else {
-      xPerc = (position.blockCenterX - position.x) / 30
-      yPerc = position.y / 30
-    }
+    setTimeout(() => {
+      targetNode.dataset.transitioned = 'false'
+    }, 200)
 
     targetNode.style.transform = `translate3d(${xPerc}px, ${yPerc}px, 0px)`
   }
 
   function mouseOutOfBlock (e: MouseEvent<HTMLDivElement>) {
     const targetNode = e.target as HTMLDivElement
-    targetNode.style.transform = 'none'
+    
+    setTimeout(() => {
+      targetNode.dataset.transitioned = 'true'
+      targetNode.style.transform = 'none'
+    }, 200)
   }
 
   return (
     <header className={styles.header}>
-      <div
-        className={styles.animoji}
-        onMouseEnter={animojiMouseEnter}
-      >
+      <div className={styles.animoji} onMouseEnter={animojiMouseEnter}>
         <video
           ref={animojiRef}
           src={animojiVideo}
@@ -85,7 +78,8 @@ export const Header = (): React.JSX.Element => {
         className={styles['topic-toggle']}
         onClick={switchCaretPosition}
         onMouseMove={e => mouseMoveInHeader(e)}
-        onMouseOut={mouseOutOfBlock}
+        onMouseOut={e => mouseOutOfBlock(e)}
+        data-transitioned={true}
       >
         <h4
           className={cn(['text-header-4', {
@@ -100,8 +94,6 @@ export const Header = (): React.JSX.Element => {
       <div
         className={styles['lang-toggle']}
         onClick={switchLanguage}
-        onMouseMove={e => mouseMoveInHeader(e)}
-        onMouseOut={mouseOutOfBlock}
       >
         <div data-role='language-spin' data-lang={currentLanguage}>
           <h4 className='text-header text-bold'>ru</h4>
