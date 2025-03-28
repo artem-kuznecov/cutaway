@@ -4,6 +4,7 @@ export const App = (): React.JSX.Element => {
   return (
     <>
       <Header />
+      <p>test 1</p>
     </>
   )
 }
