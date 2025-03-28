@@ -82,13 +82,21 @@ export const Header = (): React.JSX.Element => {
         data-transitioned={true}
       >
         <h4
-          className={cn(['text-header-4', {
-            'text-gradient': caretPosition === 'left'
-          }])}>Работа</h4>
+          className={
+            cn(['text-header-4',
+              {
+                'text-gradient': caretPosition === 'left'
+              }
+            ])}
+          >Работа</h4>
         <h4
-          className={cn(['text-header-4', {
-            'text-gradient-colored': caretPosition === 'right'
-          }])}>О себе</h4>
+          className={
+            cn(['text-header-4',
+              {
+                'text-gradient-colored': caretPosition === 'right'
+              }
+            ])}
+          >О себе</h4>
         <div data-role='caret' data-position={caretPosition}></div>
       </div>
       <div
