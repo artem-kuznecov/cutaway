@@ -6,6 +6,9 @@ $pseudo-padding-inline: 8px;
   height: 4.25rem;
   display: flex;
   justify-content: space-between;
+  opacity: 0;
+  animation: slide-down calc(var(--animation-duration) * 2) ease-out forwards;
+  animation-delay: calc(var(--animation-duration) * 2);
 }
 
 .animoji,
@@ -102,6 +105,10 @@ $pseudo-padding-inline: 8px;
     }
     transition: all var(--animation-duration);
   }
+
+  &[data-transitioned="true"] {
+    transition: transform var(--animation-duration);
+  }
 }
 
 @media (pointer: coarse) {
@@ -124,5 +131,24 @@ $pseudo-padding-inline: 8px;
     &[data-position="right"] {
       left: calc(100% - $caret-width - $pseudo-padding-inline - 8px);
     }
+  }
+}
+
+@keyframes slide-down {
+  0% {
+    transform: translateY(-200%);
+    opacity: 0;
+  }
+  50% {
+    transform: translateY(20%);
+    opacity: 0.5;
+  }
+  75% {
+    transform: translateY(-10%);
+    opacity: 0.75;
+  }
+  100% {
+    transform: none;
+    opacity: 1;
   }
 }
