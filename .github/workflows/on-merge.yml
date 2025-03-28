@@ -20,7 +20,7 @@ jobs:
           script: |
             cd ~/cutaway
             eval `ssh-agent -s`
-            ssh-add ~/.ssh/GitHubPersonal
+            ssh-add ~/.ssh/GitHub
             git checkout master
             git pull
             if [[ $(git log -1 --format=%s) =~ "Merge pull request" ]]; then
