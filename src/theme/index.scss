@@ -45,25 +45,30 @@ html {
   html {
     animation: global-appear-sm 0.75s linear forwards;
     font-size: 12px;
-    body #root {
+    body #root #content-container {
       padding: 24px 24px;
     }
   }
 }
 
 body,
-#root {
+#content-container {
   min-height: 100dvh;
 }
 
 body {
-  display: flex;
-  justify-content: center;
   background: var(--bg-light);
   #root {
-    flex-grow: 1;
-    padding: 40px 88px 0;
-    max-width: 1280px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    #content-container {
+      width: 100%;
+      flex-grow: 1;
+      padding: 40px 88px 0;
+      max-width: 1280px;
+    }
   }
 }
 
