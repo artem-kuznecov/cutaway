@@ -9,105 +9,128 @@ $pseudo-padding-inline: 8px;
   opacity: 0;
   animation: slide-down calc(var(--animation-duration) * 2) ease-out forwards;
   animation-delay: calc(var(--animation-duration) * 2);
-}
 
-.animoji,
-.lang-toggle {
-  background: var(--bg-lightest);
-  box-shadow: var(--block-shadow-drop);
-  border-radius: 50%;
-  height: 100%;
-  aspect-ratio: 1 / 1;
-}
-
-.animoji {
-  overflow: hidden;
-  position: relative;
-  transition: scale var(--animation-duration);
-  video {
-    height: 90%;
-    position: absolute;
-    top: 14%;
-    left: -10%;
-    pointer-events: none;
+  .animoji,
+  .lang-toggle {
+    background: var(--bg-lightest);
+    box-shadow: var(--block-shadow-drop);
+    border-radius: 50%;
+    height: 100%;
+    aspect-ratio: 1 / 1;
   }
-}
 
-.lang-toggle {
-  cursor: pointer;
-  overflow: hidden;
-  transition: scale var(--animation-duration);
-  &:active {
-    scale: 1.1;
-  }
-  [data-role="language-spin"] {
-    height: 200%;
-    &[data-lang="en"] {
-      rotate: 180deg;
-    }
-    transition: all var(--animation-duration);
-    pointer-events: none;
-    h4 {
-      height: 50%;
-      text-transform: uppercase;
-      text-align: center;
-      align-content: center;
+  .animoji {
+    overflow: hidden;
+    position: relative;
+    transition: scale var(--animation-duration);
+    video {
+      height: 90%;
+      position: absolute;
+      top: 14%;
+      left: -10%;
       pointer-events: none;
-      user-select: none;
+    }
+  }
 
-      &:last-of-type {
+  .lang-toggle {
+    cursor: pointer;
+    overflow: hidden;
+    transition: scale var(--animation-duration);
+    &:active {
+      scale: 1.1;
+    }
+    [data-role="language-spin"] {
+      height: 200%;
+      &[data-lang="en"] {
         rotate: 180deg;
+      }
+      transition: all var(--animation-duration);
+      pointer-events: none;
+      h4 {
+        height: 50%;
+        text-transform: uppercase;
+        text-align: center;
+        align-content: center;
+        pointer-events: none;
+        user-select: none;
+
+        &:last-of-type {
+          rotate: 180deg;
+        }
       }
     }
   }
+
+  .topic-toggle {
+    height: 100%;
+    width: max(20%, 190px);
+    background: var(--bg-grey);
+    border-radius: 64px;
+    box-shadow: var(--block-shadow-drop);
+    position: relative;
+    z-index: 0;
+    cursor: pointer;
+
+    display: flex;
+    justify-content: space-between;
+
+    h4 {
+      width: $caret-width;
+      height: 100%;
+      text-align: center;
+      align-content: center;
+      margin-inline: $pseudo-padding-inline 0;
+      user-select: none;
+      pointer-events: none;
+      &:last-of-type {
+        margin-inline: 0 $pseudo-padding-inline;
+      }
+    }
+
+    [data-role="caret"] {
+      z-index: -1;
+      position: absolute;
+      top: $pseudo-padding-block;
+      background: var(--bg-lightest);
+      height: calc(100% - 12px);
+      width: $caret-width;
+      border-radius: 44px;
+      pointer-events: none;
+      &[data-position="left"] {
+        left: $pseudo-padding-inline;
+      }
+      &[data-position="right"] {
+        left: calc(100% - $caret-width - $pseudo-padding-inline);
+      }
+      transition: all var(--animation-duration);
+    }
+
+    &[data-transitioned="true"] {
+      transition: transform var(--animation-duration);
+    }
+  }
 }
 
-.topic-toggle {
-  height: 100%;
-  width: max(20%, 190px);
-  background: var(--bg-grey);
-  border-radius: 64px;
-  box-shadow: var(--block-shadow-drop);
-  position: relative;
-  z-index: 0;
-  cursor: pointer;
-
-  display: flex;
-  justify-content: space-between;
-
-  h4 {
-    width: $caret-width;
-    height: 100%;
-    text-align: center;
-    align-content: center;
-    margin-inline: $pseudo-padding-inline 0;
-    user-select: none;
-    pointer-events: none;
-    &:last-of-type {
-      margin-inline: 0 $pseudo-padding-inline;
-    }
+.main-content {
+  &[data-animated-fade="true"] {
+    animation: fade-out-in 1s ease-out;
   }
+  .greeting {
+    margin-top: 9rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
-  [data-role="caret"] {
-    z-index: -1;
-    position: absolute;
-    top: $pseudo-padding-block;
-    background: var(--bg-lightest);
-    height: calc(100% - 12px);
-    width: $caret-width;
-    border-radius: 44px;
-    pointer-events: none;
-    &[data-position="left"] {
-      left: $pseudo-padding-inline;
+    p {
+      margin-top: 2.25rem;
+      width: 55%;
+      text-align: center;
     }
-    &[data-position="right"] {
-      left: calc(100% - $caret-width - $pseudo-padding-inline);
-    }
-    transition: all var(--animation-duration);
-  }
 
-  &[data-transitioned="true"] {
-    transition: transform var(--animation-duration);
+    span {
+      margin-top: 1.25rem;
+    }
   }
 }
 
@@ -134,6 +157,12 @@ $pseudo-padding-inline: 8px;
   }
 }
 
+@media screen and (max-width: 736px) {
+  .main-content .greeting p {
+    width: 85%;
+  }
+}
+
 @keyframes slide-down {
   0% {
     transform: translateY(-200%);
@@ -149,6 +178,18 @@ $pseudo-padding-inline: 8px;
   }
   100% {
     transform: none;
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out-in {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
     opacity: 1;
   }
 }

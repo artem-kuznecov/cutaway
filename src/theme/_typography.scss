@@ -30,6 +30,11 @@
   width: fit-content;
 }
 
+.text-inactive {
+  color: var(--text-grey);
+  width: fit-content;
+}
+
 .text-header-1 {
   font-size: 3.25rem;
 }
@@ -64,25 +69,37 @@ a {
   color: var(--text-dark);
 }
 
-a {
+a:not(.plain) {
   position: relative;
   border-radius: 4px;
   padding: 2px 4px;
   width: fit-content;
   text-decoration: none;
   background: transparent;
+  z-index: 1;
 
   &::before {
     content: " ";
     position: absolute;
     left: 0;
     bottom: 0px;
-    background: var(--bg-grey);
+    background: var(--text-grey);
     width: 100%;
     height: 2px;
     border-radius: 4px;
     transition: all 0.2s;
     z-index: -1;
+  }
+}
+
+a.plain {
+  padding: 4px;
+  display: flex;
+  border-radius: 50%;
+  transition: all var(--animation-duration);
+  &:hover {
+    transform: scale(1.1);
+    box-shadow: var(--block-shadow-drop);
   }
 }
 
