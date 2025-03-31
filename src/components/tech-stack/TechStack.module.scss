@@ -1,0 +1,69 @@
+.tech-stack {
+  background: var(--bg-grey);
+  border-radius: 1.75rem;
+  padding: 3rem 4.5rem;
+  margin-bottom: 9rem;
+
+  display: flex;
+  flex-direction: column;
+
+  h1 {
+    margin-block: 1.25rem 1.5rem;
+  }
+
+  .technologies-groups {
+    display: grid;
+    grid-template-areas: "a b c d e";
+    row-gap: 2.5rem;
+    column-gap: 1.5rem;
+    svg {
+      width: 18px;
+    }
+    p[data-group-name] {
+      margin-bottom: 1.25rem;
+      width: fit-content;
+    }
+    .tech-group {
+      width: fit-content;
+      div:not([data-tech-name]) {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      div[data-tech-name] {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        width: fit-content;
+      }
+    }
+  }
+}
+
+@media screen and (width < 900px) {
+  .tech-stack .technologies-groups {
+    grid-template-areas:
+      "a b c"
+      "d e f";
+  }
+}
+
+@media screen and (width < 500px) {
+  .tech-stack .technologies-groups {
+    grid-template-areas:
+      "a b"
+      "c d"
+      "e f";
+  }
+}
+
+@media screen and (width < 400px) {
+  .tech-stack .technologies-groups {
+    grid-template-areas:
+      "a"
+      "b"
+      "c"
+      "d"
+      "e";
+  }
+}
