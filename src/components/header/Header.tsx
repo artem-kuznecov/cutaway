@@ -1,23 +1,16 @@
-import { useRef, useState, MouseEvent } from 'react'
+import { useRef, MouseEvent } from 'react'
 import cn from 'classnames'
 import animojiVideo from '@/assets/animoji.mp4'
 import styles from './Header.module.scss'
-import type { TypeActiveTopic, TypeCaretPosition, TypeCurrentLanguage } from '@/types/preferences'
 import { isTouchDevice } from '@/utils'
+import { useTopicsSettings } from '@/stores/topic.store'
+import { usePreferences } from '@/stores/preferences.store'
 
 export const Header = (): React.JSX.Element => {
+  const { switchTopic, currentTopic } = useTopicsSettings()
+  const { language, switchLanguage } = usePreferences()
   const topicToggleRef = useRef<HTMLDivElement>(null)
   const animojiRef = useRef<HTMLVideoElement>(null)
-  const mainContentRef = useRef<HTMLElement>(null)
-
-  const [caretPosition, setCaretPosition] = useState<TypeCaretPosition>('left')
-  const [activeTopic, setActiveTopic] = useState<TypeActiveTopic>('work')
-  const [currentLanguage, setCurrentLanguage] = useState<TypeCurrentLanguage>('ru')
-
-  function switchLanguage () {
-    if (currentLanguage === 'ru') setCurrentLanguage('en')
-    else setCurrentLanguage('ru')
-  }
 
   function animojiMouseEnter () {
     const animoji = animojiRef.current as HTMLVideoElement
@@ -26,19 +19,9 @@ export const Header = (): React.JSX.Element => {
 
   function switchCaretPosition () {
     (topicToggleRef.current as HTMLDivElement).style.pointerEvents = 'none'
-    const mainContentBlock = mainContentRef.current as HTMLElement
-    mainContentBlock.dataset.animatedFade = 'true'
-    if (caretPosition === 'left') setCaretPosition('right')
-    else setCaretPosition('left')
-    setTimeout(() => {
-      setActiveTopic(prev => {
-        if (prev === 'work') return 'life'
-        else return 'work'
-      })
-    }, 500)
+    switchTopic()
     setTimeout(() => {
       (topicToggleRef.current as HTMLDivElement).style.pointerEvents = 'all'
-      mainContentBlock.dataset.animatedFade = 'false'
     }, 1000)
   }
 
@@ -96,7 +79,7 @@ export const Header = (): React.JSX.Element => {
             className={
               cn(['text-header-4',
                 {
-                  'text-gradient': caretPosition === 'left'
+                  'text-gradient': currentTopic === 'work'
                 }
               ])}
             >Работа</h4>
@@ -104,34 +87,22 @@ export const Header = (): React.JSX.Element => {
             className={
               cn(['text-header-4',
                 {
-                  'text-gradient-colored': caretPosition === 'right'
+                  'text-gradient-colored': currentTopic === 'life'
                 }
               ])}
             >О себе</h4>
-          <div data-role='caret' data-position={caretPosition}></div>
+          <div data-role='caret' data-position={currentTopic === 'work' ? 'left' : 'right'}></div>
         </div>
         <div
           className={styles['lang-toggle']}
           onClick={switchLanguage}
         >
-          <div data-role='language-spin' data-lang={currentLanguage}>
+          <div data-role='language-spin' data-lang={language}>
             <h4 className='text-header text-bold'>ru</h4>
             <h4 className='text-header text-bold'>en</h4>
           </div>
         </div>
       </header>
-      <main ref={mainContentRef} className={styles['main-content']} data-animated-fade={false}>
-        <div className={styles.greeting}>
-          {
-            activeTopic === 'work' &&
-            <>
-              <h1 className='text-header-1 text-gradient'>Привет, я Артём</h1>
-              <p>Сейчас я frontend-разработчик в компании группы Билайн, занимаюсь разработкой и поддержкой личного кабинета пользователя и медиаплеера</p>
-              <span className='text-inactive'>Резюме можно скачать<a href='https://hh.ru/resume/e10bd4b8ff0b4fed380039ed1f7033724b6533' target='_blank'>здесь</a></span>
-            </>
-          }
-        </div>
-      </main>
     </>
   )
 }
