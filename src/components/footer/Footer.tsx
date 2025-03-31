@@ -1,8 +1,8 @@
 import styles from './Footer.module.scss'
-import TelegramIcon from '@/assets/icons/telegram.svg?react'
-import GmailIcon from '@/assets/icons/gmail.svg?react'
-import HeadHunterIcon from '@/assets/icons/hh.svg?react'
-import GithubIcon from '@/assets/icons/github.svg?react'
+import TelegramIcon from '@/assets/icons/social/telegram.svg?react'
+import GmailIcon from '@/assets/icons/social/gmail.svg?react'
+import HeadHunterIcon from '@/assets/icons/social/hh.svg?react'
+import GithubIcon from '@/assets/icons/social/github.svg?react'
 
 const EXTERNAL_LINKS = [
   {
