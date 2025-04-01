@@ -1,10 +1,10 @@
 import { useEffect, useRef } from 'react'
+import { About } from '@/layout/about/About'
+import { Header } from '@/layout/header/Header'
+import { Footer } from '@/layout/footer/Footer'
+import { TechStack } from '@/layout/tech-stack/TechStack'
+import { SpotlightedProjects } from '@/layout/spotlighted-projects/Projects'
 import { useTopicsSettings } from '@/stores/topic.store'
-import { Header } from '@/components/header/Header'
-import { TechStack } from '@/components/tech-stack/TechStack'
-import { About } from '@/components/about/About'
-import { SpotlightedProjects } from '@/components/spotlighted-projects/Projects'
-import { Footer } from '@/components/footer/Footer'
 
 export const App = (): React.JSX.Element => {
   const { currentTopic, isWorkBlockVisible, isLifeBlockVisible } = useTopicsSettings()
