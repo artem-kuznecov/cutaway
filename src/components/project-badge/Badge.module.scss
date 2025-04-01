@@ -1,0 +1,12 @@
+.badge {
+  padding: 0.25rem 0.75rem;
+  font-family: "geologica bold";
+  text-transform: uppercase;
+  background: #e1e1e1;
+  border-radius: 0.5rem;
+  text-align: center;
+  align-content: center;
+  &[data-color="yellow"] {
+    background: var(--color-yellow);
+  }
+}

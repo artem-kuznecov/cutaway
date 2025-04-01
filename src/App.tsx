@@ -1,9 +1,10 @@
 import { useEffect, useRef } from 'react'
+import { About } from '@/layout/about/About'
+import { Header } from '@/layout/header/Header'
+import { Footer } from '@/layout/footer/Footer'
+import { TechStack } from '@/layout/tech-stack/TechStack'
+import { SpotlightedProjects } from '@/layout/spotlighted-projects/Projects'
 import { useTopicsSettings } from '@/stores/topic.store'
-import { Header } from '@/components/header/Header'
-import { TechStack } from '@/components/tech-stack/TechStack'
-import { About } from '@/components/about/About'
-import { Footer } from '@/components/footer/Footer'
 
 export const App = (): React.JSX.Element => {
   const { currentTopic, isWorkBlockVisible, isLifeBlockVisible } = useTopicsSettings()
@@ -11,7 +12,7 @@ export const App = (): React.JSX.Element => {
   const fadedBlockRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    // prevention of executing on initial render (2 because of strict mode enabled)
+    // предотвращение выполнения при первом рендере
     if (isStrictInitRender.current < 2) {
       isStrictInitRender.current ++
       return
@@ -37,6 +38,7 @@ export const App = (): React.JSX.Element => {
                 <span className='text-inactive'>Резюме можно скачать<a href='https://hh.ru/resume/e10bd4b8ff0b4fed380039ed1f7033724b6533' target='_blank'>здесь</a></span>
               </div>
               <TechStack />
+              <SpotlightedProjects />
             </>
           }
           {
