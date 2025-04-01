@@ -2,7 +2,7 @@ import { useRef, MouseEvent } from 'react'
 import cn from 'classnames'
 import animojiVideo from '@/assets/animoji.mp4'
 import styles from './Header.module.scss'
-import { isTouchDevice } from '@/utils'
+import { isTouchDevice } from '@/utils/is-touch-device'
 import { useTopicsSettings } from '@/stores/topic.store'
 import { usePreferences } from '@/stores/preferences.store'
 

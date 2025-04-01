@@ -1,6 +1,6 @@
 import { FunctionComponent, SVGProps } from 'react'
 
-interface ITechnology {
+export interface ITechnology {
   name: string
   icon: FunctionComponent<SVGProps<SVGSVGElement>>
 }

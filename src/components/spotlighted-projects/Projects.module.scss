@@ -1,0 +1,14 @@
+.spotlighted-projects {
+  margin-bottom: 8rem;
+
+  h1 {
+    margin-bottom: 1.75rem;
+  }
+
+  .projects-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    border: 1px solid red;
+  }
+}
