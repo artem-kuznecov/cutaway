@@ -1,0 +1,14 @@
+.not-found-page {
+  height: 100dvh;
+  width: 100%;
+
+  p:first-of-type {
+    margin-top: 1.5rem;
+  }
+
+  svg {
+    width: 80%;
+    float: right;
+    height: fit-content;
+  }
+}
