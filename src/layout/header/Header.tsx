@@ -96,6 +96,7 @@ export const Header = (): React.JSX.Element => {
         <div
           className={styles['lang-toggle']}
           onClick={switchLanguage}
+          style={{ pointerEvents: 'none', opacity: 0 }}
         >
           <div data-role='language-spin' data-lang={language}>
             <h4 className='text-header text-bold'>ru</h4>
