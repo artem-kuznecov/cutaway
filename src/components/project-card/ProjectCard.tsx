@@ -1,17 +1,22 @@
 import styles from './ProjectCard.module.scss'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { Badge } from '@/components/project-badge/Badge'
 import { useBoundaryObserver } from '@/utils/intersection-observer.util'
 import type { TypeProjectInfo } from '@/types/project.type'
 
 export const ProjectCard = ({ project }: { project: TypeProjectInfo }): React.JSX.Element => {
   const { targetRef, isOffTop, isOffBottom } = useBoundaryObserver()
+  const [initRenderCount, setRenderCount] = useState<number>(0)
 
   useEffect(() => {
+    if (initRenderCount < 3) {
+      setRenderCount(prev => prev + 1)
+      return
+    }
     const target = targetRef.current as unknown as HTMLDivElement
-    if (target.dataset.animated === 'slide-out') target.dataset.animated = 'slide-in'
-    else target.dataset.animated = 'slide-out'
-  }, [isOffTop, isOffBottom, targetRef])
+    if (target.dataset.animated === 'slide-in') target.dataset.animated = 'slide-out'
+    else target.dataset.animated = 'slide-in'
+  }, [isOffTop, isOffBottom, targetRef, initRenderCount])
 
   return (
     <div ref={targetRef} className={styles['project-card']} data-project data-animated='slide-in'>
