@@ -12,8 +12,10 @@ export const App = (): React.JSX.Element => {
   const fadedBlockRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
+    window.addEventListener('beforeunload', handleBeforeUnload)
+
     // предотвращение выполнения при первом рендере
-    if (isStrictInitRender.current < 2) {
+    if (isStrictInitRender.current < 1) {
       isStrictInitRender.current ++
       return
     }
@@ -22,7 +24,15 @@ export const App = (): React.JSX.Element => {
     setTimeout(() => {
       fadedBlock.dataset.animatedFade = 'false'
     }, 1000)
+
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload)
+    }
   }, [currentTopic])
+
+  function handleBeforeUnload () {
+    window.scrollTo(0, 0)
+  }
 
   return (
     <>
