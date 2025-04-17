@@ -1,10 +1,12 @@
 // Хук отслеживания ухода половины элемента за границу вьюпорта
+// TODO убрать лишнее, типизировать
 
 import { useEffect, useState, useRef } from 'react'
 
 const useBoundaryObserver = () => {
   
-  const [isOffTop, setIsOffTop] = useState(false)
+  // const [isOffTop, setIsOffTop] = useState(false)
+  const [isOffTop] = useState(false)
   const [isOffBottom, setIsOffBottom] = useState(false)
   const targetRef = useRef(null)
 
@@ -19,15 +21,16 @@ const useBoundaryObserver = () => {
 
     const callback = (entries: IntersectionObserverEntry[]) => {
       entries.forEach(entry => {
-        const { top, bottom } = entry.boundingClientRect
+        // const { top, bottom } = entry.boundingClientRect
+        const { bottom } = entry.boundingClientRect
         const { intersectionRatio } = entry
 
         // Проверка ухода за верхнюю границу
-        if (intersectionRatio <= 0.5 && top < 0) {
-          setIsOffTop(true)
-        } else {
-          setIsOffTop(false)
-        }
+        // if (intersectionRatio <= 0.5 && top < 0) {
+        //   setIsOffTop(true)
+        // } else {
+        //   setIsOffTop(false)
+        // }
 
         // Проверка ухода за нижнюю границу
         if (intersectionRatio <= 0.5 && bottom > window.innerHeight) {

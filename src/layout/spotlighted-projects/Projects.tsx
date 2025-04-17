@@ -1,5 +1,5 @@
 import styles from './Projects.module.scss'
-import { projects } from '@/components/project-badge/actual-projects'
+import { projects } from './actual-projects'
 import { ProjectCard } from '@/components/project-card/ProjectCard'
 
 export const SpotlightedProjects = (): React.JSX.Element => {
