@@ -14,12 +14,14 @@ export const ProjectCard = ({ project }: { project: TypeProjectInfo }): React.JS
       return
     }
     const target = targetRef.current as unknown as HTMLDivElement
-    if (target.dataset.animated === 'slide-in') target.dataset.animated = 'slide-out'
-    else target.dataset.animated = 'slide-in'
+    // if (target.dataset.animated === 'slide-out') target.dataset.animated = 'slide-in'
+    // else target.dataset.animated = 'slide-in'
+    if (!isOffBottom) target.dataset.animated = 'slide-in'
+    
   }, [isOffTop, isOffBottom, targetRef, initRenderCount])
 
   return (
-    <div ref={targetRef} className={styles['project-card']} data-project data-animated='slide-in'>
+    <div ref={targetRef} className={styles['project-card']} data-project data-animated='slide-out'>
       <section data-heading>
         <div data-badges>
           <project.icon />
