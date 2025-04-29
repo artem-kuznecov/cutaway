@@ -45,7 +45,7 @@ export const App = (): React.JSX.Element => {
               <div className='greeting'>
                 <h1 className='text-header-1 text-gradient'>Привет, я Артём</h1>
                 <p>Сейчас я frontend-разработчик в компании группы Билайн, занимаюсь разработкой и поддержкой личного кабинета пользователя и медиаплеера</p>
-                <span className='text-inactive'>Резюме можно скачать<a href='https://hh.ru/resume/e10bd4b8ff0b4fed380039ed1f7033724b6533' target='_blank'>здесь</a></span>
+                <span className='text-inactive'>Резюме можно скачать<a href='https://hh.ru/resume/2b28bb5aff0ec55c580039ed1f707630453937' target='_blank'>здесь</a></span>
               </div>
               <TechStack />
               <SpotlightedProjects />
